@@ -43,6 +43,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
+    @property
+    def fullname(self):
+        return f'{self.first_name} {self.last_name}'
+
     class Meta:
         managed = False
         db_table = 'user'

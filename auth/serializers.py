@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate
 
 from rest_framework import serializers
+from rest_framework.fields import empty
 
 from auth.models import User
 
@@ -30,7 +31,7 @@ class AuthTokenSerializer(serializers.Serializer):
                                 email=email, password=password)
 
             if not user:
-                msg = 'Unable to log in with provided credentials.'
+                msg = 'Login failed'
                 raise serializers.ValidationError(msg, code='authorization')
         else:
             msg = 'Must include "username" and "password".'
